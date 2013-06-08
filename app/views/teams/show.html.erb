@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Owner:</strong>
+  <%= @team.user.username %>
+</p>
+<p>
+  <strong>Name:</strong>
+  <%= @team.name %>
+</p>
+<p>
+	<strong>Points:</strong>
+	<%= @team.points %>
+</p>
+<p>
+	<strong>League:</strong>
+	<%= @team.league.name %>
+</p>
+<% @team.team_players.each do |p| %>
+<% player = tp.player %>
+<p><strong><%= player.role %></strong><%= link_to player.name, player %></p>
+<% end %>
+<%= link_to 'Back', teams_path %>

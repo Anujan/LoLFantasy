@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @league.name %>
+</p>
+
+<p>
+  <strong>Creator:</strong>
+  <%= @league.user.username %>
+</p>
+
+<p>
+  <strong>Private:</strong>
+  <%= @league.private ? "Yes" : "No" %>
+</p>
+
+<p>
+  <strong>Start week:</strong>
+  <%= @league.start_week %>
+</p>
+<% if current_user == @league.user %>
+	<%= link_to 'Edit', edit_league_path(@league) %> |
+<% end %>
+<%= link_to 'Join', new_team_path(@league) %> |
+<%= link_to 'Back', leagues_path %>
