@@ -11,13 +11,13 @@ load "config/recipes/check"
 server "198.46.140.247", :web, :app, :db, primary: true
 
 set :user, "anujan"
-set :application, "pentakilluniversity"
+set :application, "lolfantasy"
 set :deploy_to, "/home/#{user}/apps/#{application}"
 set :deploy_via, :remote_cache
 set :use_sudo, false
 
 set :scm, "git"
-set :repository, "https://anujan@bitbucket.org/anujan/pentakill-university.git"
+set :repository, "https://anujan@bitbucket.org/anujan/lolfantasy.git"
 set :branch, "master"
 
 default_run_options[:pty] = true
