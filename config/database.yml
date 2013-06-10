@@ -22,7 +22,7 @@ production:
   adapter: postgresql
   encoding: unicode
   database: lolfantasy_production
-  username: lolmentor
+  username: lolfantasy
   password: Ej21As7
   pool: 10
   timeout: 5000
