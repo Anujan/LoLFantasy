@@ -21,6 +21,7 @@ class Team < ActiveRecord::Base
 			tp = team_players.new(player_id: player.id, role: player.role)
 			if tp.save
 				self.budget -= player.price
+				transactions.create!(player: player, action: 'BUY')
 				save
 			end
 		end
@@ -32,6 +33,7 @@ class Team < ActiveRecord::Base
 			if (tp.player_id == player.id && !tp.destroyed?)
 				tp.destroy!
 				self.budget += player.sell_price
+				transactions.create!(player: player, action: 'SELL')
 				save
 				return true
 			end

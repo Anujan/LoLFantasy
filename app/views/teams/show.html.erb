@@ -17,7 +17,7 @@
 	<%= @team.league.name %>
 </p>
 <% @team.team_players.each do |p| %>
-<% player = tp.player %>
-<p><strong><%= player.role %></strong><%= link_to player.name, player %></p>
+<% player = p.player %>
+<p><strong><%= player.role %>: </strong><%= link_to player.name, player %></p>
 <% end %>
 <%= link_to 'Back', teams_path %>

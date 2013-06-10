@@ -11,9 +11,12 @@
 </p>
 
 <p>
-  <strong>Position:</strong>
-  <%= @player.position %>
+  <strong>Role:</strong>
+  <%= @player.role %>
 </p>
 
-<%= link_to 'Edit', edit_player_path(@player) %> |
+<p>
+  <strong>KDA:</strong>
+  <%= @player.kda %>
+</p>
 <%= link_to 'Back', players_path %>

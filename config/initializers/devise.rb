@@ -245,4 +245,5 @@ Devise.setup do |config|
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = "/my_engine/users/auth"
   config.omniauth :twitter, "meftFfuxytDHklLFNyKg", "3QziGfrggVpYBhEwXG0IqLF7epZqB4xFkG6eqnwiYE"
+  config.omniauth :reddit, "mrj2MJBq9ByRxg", "KOlJwZUxhOAy39pKHk1rhdRrs0U", scope: 'identity', duration: 'permanent'
 end

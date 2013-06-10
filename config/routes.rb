@@ -1,10 +1,11 @@
 LoLFantasy::Application.routes.draw do
   
-  post "team/:id/sell/:player" => 'teams#sell', as: 'sell_player'
-  post "team/:id/buy/:player" => 'teams#buy', as: 'buy_player'
+  get "team/:id/sell/:player" => 'teams#sell', as: 'sell_player'
+  get "team/:id/buy/:player" => 'teams#buy', as: 'buy_player'
   get "manage/:id" => 'teams#manage', as: 'manage_team'
   
   get "join/:league/" => 'teams#new', as: 'new_team'
+  get "join/:league/:token" => 'teams#new', as: 'new_team_token'
   post "join/:league/" => 'teams#create', as: 'create_team'
   
   resources :players

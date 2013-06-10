@@ -19,8 +19,12 @@
   <strong>Start week:</strong>
   <%= @league.start_week %>
 </p>
-<% if current_user == @league.user %>
+
+<% if current_user == @league.user && @league.private %>
+	<p>
+		<strong><%= link_to "Join League Link (Users can't join without this link)", new_team_token_path(@league, @league.token) %></strong>
+	<p>
 	<%= link_to 'Edit', edit_league_path(@league) %> |
 <% end %>
-<%= link_to 'Join', new_team_path(@league) %> |
+<%= link_to 'Join', @league.private ? new_team_token_path(@league, @league.token) : new_team_path(@league) %> |
 <%= link_to 'Back', leagues_path %>

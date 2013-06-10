@@ -5,7 +5,7 @@ class LeaguesController < ApplicationController
   # GET /leagues
   # GET /leagues.json
   def index
-    @leagues = League.all
+    @leagues = League.where(private: false)
   end
 
   # GET /leagues/1
@@ -66,6 +66,12 @@ class LeaguesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_league
       @league = League.find(params[:id])
+    end
+
+    def modify_league?
+      unless current_user == @league.user
+        redirect_to root_path, error: "Only the creator of the league may edit it."
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

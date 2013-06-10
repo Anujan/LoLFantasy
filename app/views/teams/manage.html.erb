@@ -24,7 +24,7 @@
         <td><%= player.kda %></td>
         <td><%= player.total_points %></td>
         <td><%= player.sell_price %></td>
-        <td><%= link_to 'Sell', sell_player_path(@team, player), class: 'btn btn-danger', data: { confirm: "Are you sure you want to sell #{player.name} for #{player.sell_price}?"}, method: :post %>
+        <td><%= link_to 'Sell', sell_player_path(@team, player), class: 'btn btn-danger', data: { confirm: "Are you sure you want to sell #{player.name} for #{player.sell_price}?"} %>
         </td>
       </tr>
     <% end %>
@@ -51,7 +51,7 @@
         <td><%= player.kda %></td>
         <td><%= player.total_points %></td>
         <td><%= player.price %></td>
-        <td><%= link_to 'Buy', buy_player_path(@team, player), class: 'btn btn-primary', data: { confirm: "Are you sure you want to buy #{player.name} for $#{player.price}?" }, method: :post %>
+        <td><%= link_to 'Buy', buy_player_path(@team, player), class: 'btn btn-primary', data: { confirm: "Are you sure you want to buy #{player.name} for $#{player.price}?" } %>
         </td>
       </tr>
     <% end %>

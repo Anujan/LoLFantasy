@@ -32,27 +32,20 @@
 			<nav id="main_menu">
 				<div class="menu_wrap">
 					<ul class="nav sf-menu">
-						<li class="sub-menu active"><a href="<%= url_for root_path %>">Home</a></li>
-						<li class="sub-menu"><%= link_to "Leagues", leagues_path %></li>
+						<%= nav_link "Home", root_path %>
+						<%= nav_link "Leagues", leagues_path %>
 						<% if user_signed_in? %>
-							<li><%= link_to "My Teams", teams_path %> </li>	
-							<li class="submenu">
-								<%= link_to "Sign out", destroy_user_session_path, method: :delete%>
-							</li>
+							<%= nav_link "My Teams", teams_path	%>
+							<%= nav_link "Sign out", destroy_user_session_path, method: :delete %>
 						<% else %>
-							<li class="submenu">
-								<%= link_to "Sign in", new_user_session_path%>
-							</li>
-							<li class="submenu"><%= link_to "Sign up", new_user_registration_path %></li>
+							<%= nav_link "Sign in", new_user_session_path %>
+							<%= nav_link "Sign up", new_user_registration_path %>
 						<% end %>
 					</ul>
 				</div>
 			</nav>
 		</div>
 	</div>
-	<!--//header-->
-	<!--banner-->
-
 	<div class="container wrapper">
 		<div class="inner_content">
 			<%= bootstrap_flash %>
@@ -74,32 +67,5 @@
 				</div>
 			</div>
 			<a href="#"><i class="go-top hidden-phone hidden-tablet  icon-double-angle-up"></i></a>
-//<![CDATA[
-$(window).load(function(){	
-	$('.projects').isotope({
-	});
-});
-//]]>
-</script>		
-<script type="text/javascript">
-//<![CDATA[
-$(function () {
-	$('div.element').hide();
-});
-		var i = 0;//initialize
-		var int=0;
-		$(window).bind("load", function() {
-			var int = setInterval("doThis(i)",100);//fade in speed in milliseconds
-		}); 
-		function doThis() {
-			var imgs = $('div.element').length;
-			if (i >= imgs) {
-				clearInterval(int);
-			}
-			$('div.element:hidden').eq(0).fadeIn(100);
-			i++;//add 1 to the count
-		}
-		//]]>
-		</script>
 	</body>
 	</html>

@@ -6,7 +6,7 @@ class TeamsController < ApplicationController
   # GET /teams
   # GET /teams.json
   def index
-    @teams = Team.all
+    @teams = current_user.teams
   end
 
   # GET /teams/1
@@ -16,7 +16,12 @@ class TeamsController < ApplicationController
 
   # GET /teams/new
   def new
-    @team = Team.new
+    @league = League.find(params[:league])
+    if (@league.private && @league.token == params[:token])
+      @team = Team.new
+    else
+      redirect_to leagues_path, error: "This is a private league. You aren't able to join without the link from #{@league.user.username}"
+    end
   end
 
   # POST /teams
@@ -106,7 +111,7 @@ class TeamsController < ApplicationController
     def check_user_priviledges
       if (@team.user != current_user)
         flash[:error] = "You do not have permission to perform this action!"
-        redirect_to :back
+        redirect_to root_path
       end
     end
 
