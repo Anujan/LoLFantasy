@@ -17,7 +17,7 @@ class TeamsController < ApplicationController
   # GET /teams/new
   def new
     @league = League.find(params[:league])
-    if (@league.private && @league.token == params[:token])
+    if (!@league.private || @league.token == params[:token])
       @team = Team.new
     else
       redirect_to leagues_path, error: "This is a private league. You aren't able to join without the link from #{@league.user.username}"
