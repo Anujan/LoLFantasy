@@ -2,7 +2,8 @@ class TeamsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_team, only: [:show, :edit, :update, :destroy, :buy, :sell, :manage]
   before_action :check_user_priviledges, only: [:edit, :destroy, :update, :buy, :sell, :manage]
-
+  before_action :roster_change, only: [:buy, :sell]
+  LOCKED_ROSTERS = true
   # GET /teams
   # GET /teams.json
   def index
@@ -52,40 +53,44 @@ class TeamsController < ApplicationController
   end
 
   def buy
-    @player = Player.find_by_name(params[:player])
-    if (@team.budget >= @player.price)
-      success = @team.buy(@player)
-      status = {success: success, message: success ? "#{@player.name} has been added to your roster!" : "You already have someone else playing #{@player.role} for you. Sell him, and try again!"}
-    else
-      status = {success: false, message: "You can't afford to buy this player!"}
-    end
-    respond_to do |format|
-      format.html { 
-        if (status[:success])
-          flash[:notice] = status[:message]
-        else
-          flash[:error] = status[:message]
-        end
+    unless LOCKED_ROSTERS
+      @player = Player.find_by_name(params[:player])
+      if (@team.budget >= @player.price)
+        success = @team.buy(@player)
+        status = {success: success, message: success ? "#{@player.name} has been added to your roster!" : "You already have someone else playing #{@player.role} for you. Sell him, and try again!"}
+      else
+        status = {success: false, message: "You can't afford to buy this player!"}
+      end
+      respond_to do |format|
+        format.html { 
+          if (status[:success])
+            flash[:notice] = status[:message]
+          else
+            flash[:error] = status[:message]
+          end
           redirect_to manage_team_path(@team)
-      }
-      format.json { render json: status.to_json }    
+        }
+        format.json { render json: status.to_json }    
+      end
     end
   end
 
   def sell
-    @player = Player.find_by_name(params[:player])
-    success = @team.sell(@player)
-    status = {success: success, message: success ? "#{@player.name} has been sold!" : "You don't own #{@player.role}."}
-    respond_to do |format|
-      format.html { 
-        if (status[:success])
-          flash[:notice] = status[:message]
-        else
-          flash[:error] = status[:message]
-        end
-        redirect_to manage_team_path(@team)
-      }
-      format.json { render json: status.to_json }    
+    unless LOCKED_ROSTERS
+      @player = Player.find_by_name(params[:player])
+      success = @team.sell(@player)
+      status = {success: success, message: success ? "#{@player.name} has been sold!" : "You don't own #{@player.role}."}
+      respond_to do |format|
+        format.html { 
+          if (status[:success])
+            flash[:notice] = status[:message]
+          else
+            flash[:error] = status[:message]
+          end
+          redirect_to manage_team_path(@team)
+        }
+        format.json { render json: status.to_json }    
+      end
     end
   end
 
@@ -119,4 +124,11 @@ class TeamsController < ApplicationController
     def team_params
       params.require(:team).permit(:user_id, :name)
     end
-end
+
+    def roster_change
+      if (LOCKED_ROSTERS)
+        flash[:error] = 'Rosters are currently locked'
+        redirect_to manage_team_path(@team)
+      end
+    end
+  end
