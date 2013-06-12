@@ -127,7 +127,7 @@ class TeamsController < ApplicationController
 
     def roster_change
       if (LOCKED_ROSTERS)
-        flash[:error] = 'Rosters are currently locked'
+        flash[:error] = 'Rosters are currently locked until sunday night. (LCS Week 1 ends)'
         redirect_to manage_team_path(@team)
       end
     end
