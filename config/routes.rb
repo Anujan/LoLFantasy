@@ -7,9 +7,9 @@ LoLFantasy::Application.routes.draw do
   get "join/:league/" => 'teams#new', as: 'new_team'
   get "join/:league/:token" => 'teams#new', as: 'new_team_token'
   post "join/:league/" => 'teams#create', as: 'create_team'
-  
+
   get "rankings" => "teams#rankings", as: 'rankings'  
-  get "leagues/:league/rankings", as: 'league_rankings'
+  get "leagues/:league/rankings" => "leagues#rankings", as: 'league_rankings'
   
   resources :players
   resources :leagues
