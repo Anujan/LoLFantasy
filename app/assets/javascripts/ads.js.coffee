@@ -32,5 +32,3 @@ class Ad
 
   create: ->
     @ad_object = new google.ads.Ad @adsense.ad_client, @container, @options
-
-window.MyAdSense = new AdSense "ca-pub-8742083424682828"
