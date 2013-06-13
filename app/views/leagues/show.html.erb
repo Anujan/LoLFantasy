@@ -27,4 +27,5 @@
 	<%= link_to 'Edit', edit_league_path(@league) %> |
 <% end %>
 <%= link_to 'Join', @league.private ? new_team_token_path(@league, @league.token) : new_team_path(@league) %> |
+<%= link_to 'Rankings', league_rankings_path(@league) %> |
 <%= link_to 'Back', leagues_path %>

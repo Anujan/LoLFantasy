@@ -5,8 +5,9 @@
     <tr>
       <th>Name</th>
       <th>Creator</th>
-      <th>Private</th>
       <th>Start week</th>
+      <th>Join</th>
+      <th>Rankings</th>
     </tr>
   </thead>
 
@@ -15,8 +16,9 @@
       <tr>
         <td><%= link_to league.name, league %></td>
         <td><%= league.user.username %></td>
-        <td><%= league.private ? "Yes" : "No"%></td>
         <td><%= league.start_week %></td>
+        <td><%= league.private ? "Private" : link_to "Join", new_team_path(@league), class: 'btn btn-primary' %></td>
+        <td><%= link_to "Rankings", league_rankings_path(@league), class: 'btn btn-info' %></td>
       </tr>
     <% end %>
   </tbody>
