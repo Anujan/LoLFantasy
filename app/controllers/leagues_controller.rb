@@ -14,6 +14,7 @@ class LeaguesController < ApplicationController
   end
 
   def rankings
+    @teams = @league.teams.order("points DESC, budget DESC")
   end
 
   # GET /leagues/new
