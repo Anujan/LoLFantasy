@@ -11,3 +11,6 @@
  *= require_self
  *= require_tree .
  */
+ .ads {
+ 	margin: 20px -20px 0px 100px;
+ }
