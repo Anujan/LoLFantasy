@@ -51,13 +51,6 @@
 	<div class="container wrapper">
 		<div class="inner_content">
 			<div class="ads" id="my_ad">
-				<script>
-				window.MyAdSense.newAd(document.getElementById('my_ad'), {
-				  'ad_slot': "8690024786",
-				  'ad_width': 728,
-				  'ad_height': 90
-				});
-				</script>
 			</div>
 			<%= bootstrap_flash %>
 			<%= yield %>
@@ -78,6 +71,13 @@
 				</div>
 			</div>
 			<a href="#"><i class="go-top hidden-phone hidden-tablet  icon-double-angle-up"></i></a>
+			<script>
+				window.MyAdSense.newAd(document.getElementById('my_ad'), {
+				  'ad_slot': "8690024786",
+				  'ad_width': 728,
+				  'ad_height': 90
+				});
+				</script>
 			<script type="text/javascript">
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-34465335-1']);
