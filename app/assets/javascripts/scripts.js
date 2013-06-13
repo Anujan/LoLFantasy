@@ -32,6 +32,7 @@ $(document).ready(function(){
 ***************************************************/
 $("[rel=tooltip]").tooltip();
 $("[data-rel=tooltip]").tooltip();
+$("[data-rel=popover]").popover();
 
 /***************************************************
 		CAROUSEL - STOP AUTO CYCLE

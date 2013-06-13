@@ -19,7 +19,7 @@
     <% @team.team_players.each do |tp| %>
       <% player = tp.player %>
       <tr>
-        <td><%= player.name %></td>
+        <td><%= link_to player.name, player %></td>
         <td><%= player.role %></td>
         <td><%= player.kda %></td>
         <td><%= player.total_points %></td>
@@ -46,7 +46,7 @@
     <% Player.all.each do |player| %>
       <% next if @team.has_player(player) %>
       <tr id="player_<%= player.id %>">
-        <td><%= player.name %></td>
+        <td><%= link_to player.name, player %></td>
         <td><%= player.role %></td>
         <td><%= player.kda %></td>
         <td><%= player.total_points %></td>

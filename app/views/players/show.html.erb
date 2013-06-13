@@ -19,4 +19,12 @@
   <strong>KDA:</strong>
   <%= @player.kda %>
 </p>
+<p>
+	<strong>CS/min:</strong>
+	<%= @player.csmin %>
+</p>
+<p>
+	<strong><a href="#" data-rel="popover" data-toggle="popover" data-content="Supports : KDA * 2.<br>Everyone else: KDA + cs/min" data-title="Point Calculation" data-html="true" data-no-turbolink>Points:</a></strong>
+	<%= @player.total_points %>
+</p>
 <%= link_to 'Back', players_path %>

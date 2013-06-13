@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130609001752) do
+ActiveRecord::Schema.define(version: 20130613174337) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "resource_id",   null: false
@@ -70,9 +70,10 @@ ActiveRecord::Schema.define(version: 20130609001752) do
     t.integer  "kills"
     t.integer  "deaths"
     t.integer  "assists"
-    t.integer  "csmin"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "cs"
+    t.integer  "game_mins"
   end
 
   create_table "team_players", force: true do |t|

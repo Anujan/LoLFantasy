@@ -8,11 +8,14 @@ class Player < ActiveRecord::Base
 
 	def total_points
 		points = 0
-
 	end
 
 	def kda
 		ratio = 0
+	end
+
+	def csmin
+		0
 	end
 
 	def sell_price
