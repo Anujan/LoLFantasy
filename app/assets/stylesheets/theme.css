@@ -1,25 +1,3 @@
-/*
-Theme Name: FLATI - Version:  1 Red
-Description:  Designed by josweb.
-Author:  Jo
-Purchase:  http://themeforest.net/user/josweb
-01. GENERAL STYLING
-02. MENU
-03. INDEX PAGES
-04. PAGES
-	0I:	TEAM
-	II:	ABOUT
-	III:SERVICES
-	IV: TESTIMONIALS
-	V:	BLOG
-	VI: CONTACT
-	VII:FOOTER
-05: PORTFOLIO, CAROUSEL & THUMB CAROUSELS
-06: 404 PAGE, PRICING TABLE, SKILLS BAR, ACCORDIAN, TABS
-07. CSS3 ANIMATIONS
-08. MEDIA QUERIES
-*/
-
 /*-----------------------------------------------------------------------------------*/
 /*	01: GENERAL STYLING
 /*-----------------------------------------------------------------------------------*/
@@ -43,7 +21,7 @@ body {
 	width: 100%;
 	z-index: 1000; 
 }
-.inner_content { padding:20px 0 0 0; }
+.inner_content { padding:10px 0 0 0; }
 .wrapper {  margin:0px auto; padding:0 0 60px;}
 #banner { background:#e9e6e1; width: 100%; }
 .intro_wrapper {  margin:0 auto; padding:0 0 40px;}
