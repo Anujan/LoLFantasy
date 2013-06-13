@@ -10,6 +10,10 @@ class TeamsController < ApplicationController
     @teams = current_user.teams
   end
 
+  def rankings
+    @teams = Team.all
+  end
+  
   # GET /teams/1
   # GET /teams/1.json
   def show
