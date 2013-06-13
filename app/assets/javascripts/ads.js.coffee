@@ -18,7 +18,7 @@ class AdSense
     window.google_num_ad_slots = 0
 
   newAd: (container, options) ->
-    id = (options.format || 'ad') + '_' + container.id
+    id = container.id
     @ads[id] = new Ad @, id, container, options
     
 class Ad

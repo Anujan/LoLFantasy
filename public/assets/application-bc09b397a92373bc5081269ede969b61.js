@@ -10632,43 +10632,91 @@ if ( typeof module === "object" && typeof module.exports === "object" ) {
   };
 
 }).call(this);
-class AdSense
-  constructor: (@ad_client) ->
-    if google?
-      google.load 'ads', '1'
-      google.setOnLoadCallback @initPage
-      @ads = {}
-      $(document).on 'page:fetch', =>
-        @clearAds()
-      $(document).on 'page:load', =>
-        @initPage()
+(function() {
+  var Ad, AdSense,
+    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
-  initPage: =>
-    ad.load() for id, ad of @ads
+  AdSense = (function() {
+    function AdSense(ad_client) {
+      var _this = this;
 
-  clearAds: ->
-    @ads = {}
-    window.google_prev_ad_slotnames_by_region[''] = '' if window.google_prev_ad_slotnames_by_region
-    window.google_num_ad_slots = 0
+      this.ad_client = ad_client;
+      this.initPage = __bind(this.initPage, this);
+      if (typeof google !== "undefined" && google !== null) {
+        google.load('ads', '1');
+        google.setOnLoadCallback(this.initPage);
+        this.ads = {};
+        $(document).on('page:fetch', function() {
+          return _this.clearAds();
+        });
+        $(document).on('page:load', function() {
+          return _this.initPage();
+        });
+      }
+    }
 
-  newAd: (container, options) ->
-    id = (options.format || 'ad') + '_' + container.id
-    @ads[id] = new Ad @, id, container, options
-    
-class Ad
-  constructor: (@adsense, @id, @container, @options) ->
+    AdSense.prototype.initPage = function() {
+      var ad, id, _ref, _results;
 
-  load: ->
-    if @ad_object? then @refresh() else @create()
+      _ref = this.ads;
+      _results = [];
+      for (id in _ref) {
+        ad = _ref[id];
+        _results.push(ad.load());
+      }
+      return _results;
+    };
 
-  refresh: ->
-    @ad_object.refresh()
+    AdSense.prototype.clearAds = function() {
+      this.ads = {};
+      if (window.google_prev_ad_slotnames_by_region) {
+        window.google_prev_ad_slotnames_by_region[''] = '';
+      }
+      return window.google_num_ad_slots = 0;
+    };
 
-  create: ->
-    @ad_object = new google.ads.Ad @adsense.ad_client, @container, @options
+    AdSense.prototype.newAd = function(container, options) {
+      var id;
 
-window.MyAdSense = new AdSense "ca-pub-8742083424682828"
-;
+      id = container.id;
+      return this.ads[id] = new Ad(this, id, container, options);
+    };
+
+    return AdSense;
+
+  })();
+
+  Ad = (function() {
+    function Ad(adsense, id, container, options) {
+      this.adsense = adsense;
+      this.id = id;
+      this.container = container;
+      this.options = options;
+    }
+
+    Ad.prototype.load = function() {
+      if (this.ad_object != null) {
+        return this.refresh();
+      } else {
+        return this.create();
+      }
+    };
+
+    Ad.prototype.refresh = function() {
+      return this.ad_object.refresh();
+    };
+
+    Ad.prototype.create = function() {
+      return this.ad_object = new google.ads.Ad(this.adsense.ad_client, this.container, this.options);
+    };
+
+    return Ad;
+
+  })();
+
+  window.MyAdSense = new AdSense("ca-pub-8742083424682828");
+
+}).call(this);
 /*!
 * Bootstrap.js by @fat & @mdo
 * Copyright 2012 Twitter, Inc.
