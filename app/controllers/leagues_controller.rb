@@ -1,6 +1,6 @@
 class LeaguesController < ApplicationController
   before_action :set_league, only: [:show, :edit, :update, :destroy, :rankings]
-  before_filter :authenticate_user!, except: [:index, :show]
+  before_filter :authenticate_user!, except: [:index, :show, :rankings]
   before_filter :modify_league?, only: [:edit, :update, :destroy]
   # GET /leagues
   # GET /leagues.json
