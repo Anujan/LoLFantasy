@@ -5,7 +5,7 @@
 	<title>LoLFantasy</title>
 	<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "application" %>
 	<%= csrf_meta_tags %>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="author" content="Anujan Panchadcharam (MrQuackers / @anujanpan)">
@@ -48,7 +48,7 @@
 	</div>
 	<div class="container wrapper">
 		<div class="ads" id="ad_box">
-		</div>
+			</div>
 		<div class="inner_content">
 			<%= bootstrap_flash %>
 			<%= yield %>
@@ -78,5 +78,13 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>
+	<script type="text/javascript">
+		window.MyAdsense = new Adsense("ca-pub-8742083424682828");
+		window.MyAdsense.newAd(document.getElementById('ad_box'), {
+		  'ad_slot': "8690024786",
+		  'ad_width': 728,
+		  'ad_height': 90
+		});
+	</script>
 	</body>
 	</html>

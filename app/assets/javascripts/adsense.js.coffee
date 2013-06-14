@@ -29,4 +29,3 @@ class Ad
 
   create: ->
     @ad_object = new google.ads.Ad @adsense.ad_client, @container, @options
-window.MyAdsense = new Adsense "ca-pub-8742083424682828"
