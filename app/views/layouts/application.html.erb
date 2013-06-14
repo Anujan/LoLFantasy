@@ -35,11 +35,11 @@
 						<%= nav_link "Home", root_path %>
 						<%= nav_link "Leagues", leagues_path %>
 						<% if user_signed_in? %>
-							<%= nav_link "My Teams", teams_path	%>
-							<%= nav_link "Sign out", destroy_user_session_path, method: :delete %>
+						<%= nav_link "My Teams", teams_path	%>
+						<%= nav_link "Sign out", destroy_user_session_path, method: :delete %>
 						<% else %>
-							<%= nav_link "Sign in", new_user_session_path %>
-							<%= nav_link "Sign up", new_user_registration_path %>
+						<%= nav_link "Sign in", new_user_session_path %>
+						<%= nav_link "Sign up", new_user_registration_path %>
 						<% end %>
 					</ul>
 				</div>
@@ -48,7 +48,7 @@
 	</div>
 	<div class="container wrapper">
 		<div class="ads" id="ad_box">
-			</div>
+		</div>
 		<div class="inner_content">
 			<%= bootstrap_flash %>
 			<%= yield %>
@@ -61,30 +61,30 @@
 					<div class="copyright">
 						LoLFantasy
 						&copy; 2013
-								- All Rights Reserved
-							</div>
-						</div>
+						- All Rights Reserved
 					</div>
 				</div>
 			</div>
-			<a href="#"><i class="go-top hidden-phone hidden-tablet  icon-double-angle-up"></i></a>
-			<script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-34465335-1']);
-  _gaq.push(['_trackPageview']);
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
+		</div>
+	</div>
+	<a href="#"><i class="go-top hidden-phone hidden-tablet  icon-double-angle-up"></i></a>
 	<script type="text/javascript">
-		window.MyAdsense = new Adsense("ca-pub-8742083424682828");
-		window.MyAdsense.newAd(document.getElementById('ad_box'), {
-		  'ad_slot': "8690024786",
-		  'ad_width': 728,
-		  'ad_height': 90
-		});
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-34465335-1']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
 	</script>
-	</body>
-	</html>
+	<script type="text/javascript">
+	window.MyAdsense = new Adsense("ca-pub-8742083424682828");
+	window.MyAdsense.newAd(document.getElementById('ad_box'), {
+		'ad_slot': "8690024786",
+		'ad_width': 728,
+		'ad_height': 90
+	});
+	</script>
+</body>
+</html>
