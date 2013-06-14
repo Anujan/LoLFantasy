@@ -1,4 +1,4 @@
-class Adsense
+class AdSense
   constructor: (@ad_client) ->
     if google?
       google.load 'ads', '1'
@@ -14,22 +14,9 @@ class Adsense
 
   clearAds: ->
     @ads = {}
+    window.google_prev_ad_slotnames_by_region[''] = '' if window.google_prev_ad_slotnames_by_region
+    window.google_num_ad_slots = 0
 
   newAd: (container, options) ->
-    id = options.format + '_' + container.id
+    id = (options.format || 'ad') + '_' + container.id
     @ads[id] = new Ad @, id, container, options
-
-class Ad
-  constructor: (@adsense, @id, @container, @options) ->
-
-  load: ->
-    if @ad_object? then @refresh() else @create()
-
-  refresh: ->
-    @ad_object.refresh()
-
-  create: ->
-    @ad_object = new google.ads.Ad @adsense.ad_client, @container, @options
-
-
-window.MyAdsense = new Adsense "ca-pub-8742083424682828"

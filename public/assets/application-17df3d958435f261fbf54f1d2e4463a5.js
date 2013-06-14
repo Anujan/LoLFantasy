@@ -10633,54 +10633,7 @@ if ( typeof module === "object" && typeof module.exports === "object" ) {
 
 }).call(this);
 (function() {
-  var Ad, Adsense,
-    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
-
-  Adsense = (function() {
-    function Adsense(ad_client) {
-      var _this = this;
-
-      this.ad_client = ad_client;
-      this.initPage = __bind(this.initPage, this);
-      if (typeof google !== "undefined" && google !== null) {
-        google.load('ads', '1');
-        google.setOnLoadCallback(this.initPage);
-        this.ads = {};
-        $(document).on('page:fetch', function() {
-          return _this.clearAds();
-        });
-        $(document).on('page:load', function() {
-          return _this.initPage();
-        });
-      }
-    }
-
-    Adsense.prototype.initPage = function() {
-      var ad, id, _ref, _results;
-
-      _ref = this.ads;
-      _results = [];
-      for (id in _ref) {
-        ad = _ref[id];
-        _results.push(ad.load());
-      }
-      return _results;
-    };
-
-    Adsense.prototype.clearAds = function() {
-      return this.ads = {};
-    };
-
-    Adsense.prototype.newAd = function(container, options) {
-      var id;
-
-      id = options.format + '_' + container.id;
-      return this.ads[id] = new Ad(this, id, container, options);
-    };
-
-    return Adsense;
-
-  })();
+  var Ad;
 
   Ad = (function() {
     function Ad(adsense, id, container, options) {
@@ -10707,6 +10660,61 @@ if ( typeof module === "object" && typeof module.exports === "object" ) {
     };
 
     return Ad;
+
+  })();
+
+}).call(this);
+(function() {
+  var AdSense,
+    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+  AdSense = (function() {
+    function AdSense(ad_client) {
+      var _this = this;
+
+      this.ad_client = ad_client;
+      this.initPage = __bind(this.initPage, this);
+      if (typeof google !== "undefined" && google !== null) {
+        google.load('ads', '1');
+        google.setOnLoadCallback(this.initPage);
+        this.ads = {};
+        $(document).on('page:fetch', function() {
+          return _this.clearAds();
+        });
+        $(document).on('page:load', function() {
+          return _this.initPage();
+        });
+      }
+    }
+
+    AdSense.prototype.initPage = function() {
+      var ad, id, _ref, _results;
+
+      _ref = this.ads;
+      _results = [];
+      for (id in _ref) {
+        ad = _ref[id];
+        _results.push(ad.load());
+      }
+      return _results;
+    };
+
+    AdSense.prototype.clearAds = function() {
+      this.ads = {};
+      if (window.google_prev_ad_slotnames_by_region) {
+        window.google_prev_ad_slotnames_by_region[''] = '';
+      }
+      return window.google_num_ad_slots = 0;
+    };
+
+    AdSense.prototype.newAd = function(container, options) {
+      var id;
+
+      id = (options.format || 'ad') + '_' + container.id;
+      return this.ads[id] = new Ad(this, id, container, options);
+    };
+
+    return AdSense;
 
   })();
 
@@ -11977,4 +11985,5 @@ $(function(){
 
 
 
-;
+
+window.MyAdSense = new AdSense("ca-pub-8742083424682828");

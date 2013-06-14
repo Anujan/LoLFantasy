@@ -14,3 +14,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+window.MyAdSense = new AdSense("ca-pub-8742083424682828");
