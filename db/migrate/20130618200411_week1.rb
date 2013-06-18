@@ -1,0 +1,30 @@
+require 'json'
+class Week1 < ActiveRecord::Migration
+  def change
+  	mins = {"TSM" => 31 + 41 + 30 + 29 + 23, "C" => 31 + 29 + 49 + 32 + 47, 
+		"Crs" => 36 + 31 + 34 + 51 + 23, "V" => 36 + 29 + 28 + 29 + 56, "D" => 47 + 29 + 71 + 30 + 48, 
+		"C9" => 29 + 41 + 34 + 32 + 32, "CLG" => 36 + 71 + 49 + 51 + 56,   
+		"VES" => 36 + 31 + 28 + 48 + 32, "Gambit" => 27 + 33 + 33 + 36 + 36, 
+		"Fnatic" => 27 + 33 + 30 + 33 + 45, "MYM" => 41 + 23 + 38 + 33 + 32, 
+		"SK" => 41 + 33 + 34 + 36 + 40,  "NiP" => 50 + 23 + 33 + 33 + 45,
+		"SNS" => 50 + 28 + 37 + 47 + 36, "ATn" => 31 + 28 + 34 + 33 + 32, 
+		"EG" => 31 + 33 + 30 + 47 + 40
+	}
+  	na = '{"ZionSpartan":{"kills":15,"deaths":12,"assists":9,"cs":1004},"NintendudeX":{"kills":12,"deaths":18,"assists":46,"cs":472},"Shiphtur":{"kills":23,"deaths":13,"assists":25,"cs":1224},"DontMashMe":{"kills":10,"deaths":14,"assists":39,"cs":1575},"Daydreamin":{"kills":4,"deaths":16,"assists":50,"cs":97},"Reginald":{"kills":16,"deaths":11,"assists":24,"cs":1021},"Dyrus":{"kills":11,"deaths":8,"assists":27,"cs":920},"Xpecial":{"kills":5,"deaths":6,"assists":32,"cs":86},"TheOddOne":{"kills":10,"deaths":9,"assists":29,"cs":571},"WildTurtle":{"kills":12,"deaths":11,"assists":26,"cs":1219},"Saintvicious":{"kills":6,"deaths":18,"assists":44,"cs":606},"Cop":{"kills":23,"deaths":13,"assists":18,"cs":1299},"Voyboy":{"kills":24,"deaths":16,"assists":24,"cs":1280},"Nyjacky":{"kills":9,"deaths":18,"assists":34,"cs":1126},"EDward":{"kills":5,"deaths":14,"assists":32,"cs":162},"mandatorycloud":{"kills":28,"deaths":13,"assists":19,"cs":1273},"Sycho Sid":{"kills":21,"deaths":11,"assists":26,"cs":1028},"Xmithie":{"kills":2,"deaths":14,"assists":39,"cs":578},"Zuna":{"kills":14,"deaths":11,"assists":31,"cs":1281},"BloodWater":{"kills":1,"deaths":8,"assists":47,"cs":148},"Scarra":{"kills":26,"deaths":22,"assists":47,"cs":1604},"Patoy":{"kills":13,"deaths":11,"assists":70,"cs":255},"Imaqtpie":{"kills":37,"deaths":14,"assists":46,"cs":1814},"Crumbzz":{"kills":8,"deaths":13,"assists":70,"cs":757},"TheRealKiWiKiD":{"kills":26,"deaths":23,"assists":39,"cs":1513},"Balls":{"kills":22,"deaths":16,"assists":28,"cs":1010},"Meteos":{"kills":9,"deaths":2,"assists":46,"cs":828},"Hai":{"kills":20,"deaths":12,"assists":30,"cs":1074},"Sneaky":{"kills":22,"deaths":6,"assists":39,"cs":1230},"LemonNation":{"kills":2,"deaths":13,"assists":51,"cs":142},"Chauster":{"kills":4,"deaths":24,"assists":70,"cs":217},"Link":{"kills":33,"deaths":26,"assists":46,"cs":1806},"Doublelift":{"kills":31,"deaths":23,"assists":41,"cs":2159},"BigfatLP":{"kills":3,"deaths":23,"assists":69,"cs":716},"Nientonsoh":{"kills":26,"deaths":18,"assists":41,"cs":1598},"Cris":{"kills":18,"deaths":23,"assists":21,"cs":1071},"Nk Inc":{"kills":12,"deaths":16,"assists":31,"cs":590},"Vileroze":{"kills":8,"deaths":20,"assists":30,"cs":910},"frommaplestreet":{"kills":16,"deaths":21,"assists":23,"cs":1251},"Evaniskus":{"kills":3,"deaths":20,"assists":39,"cs":92},"Jintae":{"kills":12,"deaths":2,"assists":9,"cs":305}}'
+	eu = '{"Darien":{"kills":8,"deaths":14,"assists":41,"cs":970},"Diamondprox":{"kills":10,"deaths":14,"assists":44,"cs":695},"Alex Ich":{"kills":22,"deaths":14,"assists":27,"cs":1526},"Genja":{"kills":15,"deaths":7,"assists":32,"cs":1262},"Darker":{"kills":9,"deaths":15,"assists":31,"cs":104},"Cyanide":{"kills":13,"deaths":14,"assists":36,"cs":554},"sOAZ":{"kills":17,"deaths":15,"assists":24,"cs":1262},"xPeke":{"kills":21,"deaths":11,"assists":25,"cs":1284},"YellOwStaR":{"kills":10,"deaths":8,"assists":33,"cs":1308},"nRated":{"kills":3,"deaths":16,"assists":41,"cs":68},"Kubon":{"kills":12,"deaths":8,"assists":25,"cs":878},"Mokatte":{"kills":1,"deaths":9,"assists":34,"cs":550},"Czaru":{"kills":26,"deaths":11,"assists":22,"cs":1340},"Makler":{"kills":19,"deaths":8,"assists":25,"cs":1278},"Libik":{"kills":5,"deaths":11,"assists":33,"cs":151},"Kev1n":{"kills":17,"deaths":19,"assists":23,"cs":1316},"hyrqBot":{"kills":8,"deaths":13,"assists":33,"cs":617},"ocelote":{"kills":7,"deaths":18,"assists":28,"cs":1236},"CandyPanda":{"kills":22,"deaths":16,"assists":24,"cs":1383},"Nyph":{"kills":2,"deaths":21,"assists":42,"cs":109},"TheTess":{"kills":10,"deaths":15,"assists":25,"cs":1342},"Godbro":{"kills":12,"deaths":12,"assists":27,"cs":1151},"Svenskeren":{"kills":4,"deaths":16,"assists":33,"cs":637},"Deficio":{"kills":6,"deaths":10,"assists":33,"cs":107},"Bjergsen":{"kills":24,"deaths":18,"assists":18,"cs":1358},"Dexter":{"kills":6,"deaths":12,"assists":36,"cs":746},"Zorozero":{"kills":17,"deaths":18,"assists":29,"cs":1244},"Nukeduck":{"kills":15,"deaths":20,"assists":21,"cs":1492},"Tabzz":{"kills":21,"deaths":15,"assists":18,"cs":1515},"wewillfailer":{"kills":1,"deaths":21,"assists":32,"cs":120},"Kerp":{"kills":16,"deaths":5,"assists":61,"cs":995},"Araneae":{"kills":16,"deaths":14,"assists":59,"cs":493},"ForellenLord":{"kills":24,"deaths":11,"assists":48,"cs":1171},"Creaton":{"kills":46,"deaths":3,"assists":40,"cs":1245},"Jree":{"kills":8,"deaths":8,"assists":75,"cs":69},"Froggen":{"kills":17,"deaths":9,"assists":26,"cs":1458},"Snoopeh":{"kills":8,"deaths":12,"assists":26,"cs":655},"Wickd":{"kills":12,"deaths":18,"assists":17,"cs":1112},"Yellowpete":{"kills":9,"deaths":16,"assists":25,"cs":1286},"Krepo":{"kills":6,"deaths":11,"assists":31,"cs":129}}'
+  	players = JSON.parse(na)
+  	players.each do |name, stats|
+  		p = Player.find_by_name(name)
+  		p.stats.create(kills: stats["kills"), deaths: stats["deaths"], assists: stats["assists"], cs: stats["cs"], week: 1,  game_mins: mins[p.team]) unless p.nil?
+  	end
+  	players = JSON.parse(eu)
+  	players.each do |name, stats|
+  		p = Player.find_by_name(name)
+  		p.stats.create(kills: stats["kills"), deaths: stats["deaths"], assists: stats["assists"], cs: stats["cs"], week: 1,  game_mins: mins[p.team]) unless p.nil?
+  	end
+  	#Zion missed a game because of graduation
+  	z = Player.find_by_name("ZionSpartan").stats.find_by_week(1).first
+  	z.game_mins = z.game_mins - 49
+  	z.save!
+  end
+end
