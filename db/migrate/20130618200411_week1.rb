@@ -15,16 +15,16 @@ class Week1 < ActiveRecord::Migration
   	players = JSON.parse(na)
   	players.each do |name, stats|
   		p = Player.find_by_name(name)
-  		p.stats.create(kills: stats["kills"), deaths: stats["deaths"], assists: stats["assists"], cs: stats["cs"], week: 1,  game_mins: mins[p.team]) unless p.nil?
+  		p.stats.create(kills: stats["kills"], deaths: stats["deaths"], assists: stats["assists"], cs: stats["cs"], week: 1,  game_mins: mins[p.team]) unless p.nil?
   	end
   	players = JSON.parse(eu)
   	players.each do |name, stats|
   		p = Player.find_by_name(name)
-  		p.stats.create(kills: stats["kills"), deaths: stats["deaths"], assists: stats["assists"], cs: stats["cs"], week: 1,  game_mins: mins[p.team]) unless p.nil?
+  		p.stats.create(kills: stats["kills"], deaths: stats["deaths"], assists: stats["assists"], cs: stats["cs"], week: 1,  game_mins: mins[p.team]) unless p.nil?
   	end
   	#Zion missed a game because of graduation
   	z = Player.find_by_name("ZionSpartan").stats.find_by_week(1).first
-  	z.game_mins = z.game_mins - 49
+  	z.game_mins = z.game_mins - 493
   	z.save!
   end
 end

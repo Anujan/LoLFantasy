@@ -12,7 +12,8 @@ namespace :fantasy do
 				s = player.stats.find_by_week(week)
 				total_points = total_points + s.points
 			end
+			t.save!
 		end
+		puts 'All Teams Updated'
 	end
-	puts 'All teams updated!'
 end
