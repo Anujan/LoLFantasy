@@ -1,5 +1,5 @@
 class Player < ActiveRecord::Base
-	has_many :stats
+	has_many :stats, class_name: 'Stats'
 	belongs_to :team_player
 
 	def to_param
