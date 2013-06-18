@@ -24,7 +24,7 @@ class Week1 < ActiveRecord::Migration
   	end
   	#Zion missed a game because of graduation
   	z = Player.find_by_name("ZionSpartan").stats.find_by_week(1).first
-  	z.game_mins = z.game_mins - 493
+  	z.game_mins = z.game_mins - 49
   	z.save!
   end
 end
