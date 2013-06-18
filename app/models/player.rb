@@ -22,7 +22,7 @@ class Player < ActiveRecord::Base
 			deaths += stat.deaths
 			assists += stat.assists
 		end
-		return (kills + deaths) / assist.to_f
+		return (kills + deaths) / assists.to_f
 	end
 
 	def csmin
