@@ -10,7 +10,7 @@ namespace :fantasy do
 			week = ENV['week'].to_i
 			t.team_players.each do |tp|
 				s = tp.player.stats.find_by_week(week)
-				total_points = total_points + s.points
+				total_points = total_points + s.points unless s.nil?
 			end
 			t.save!
 		end
