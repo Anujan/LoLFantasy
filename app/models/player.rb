@@ -11,6 +11,7 @@ class Player < ActiveRecord::Base
 		stats.each do |stat|
 			t = t + stat.points
 		end
+		return t
 	end
 
 	def kda
