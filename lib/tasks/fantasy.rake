@@ -8,8 +8,8 @@ namespace :fantasy do
 		Team.all.each do |t| 
 			total_points = t.points
 			week = ENV['week'].to_i
-			t.players.each do |player|
-				s = player.stats.find_by_week(week)
+			t.team_players.each do |tp|
+				s = tp.player.stats.find_by_week(week)
 				total_points = total_points + s.points
 			end
 			t.save!
