@@ -32,7 +32,7 @@ class Player < ActiveRecord::Base
 			cs += stat.cs
 			mins += stat.game_mins
 		end
-		return cs/min
+		return cs/mins
 	end
 
 	def sell_price
