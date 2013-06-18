@@ -13,6 +13,7 @@ namespace :fantasy do
 				total_points = total_points + s.points unless s.nil?
 			end
 			t.update_column(:points, total_points)
+			puts "#{t.name} has been updated to #{t.points} points"
 		end
 		puts 'All Teams Updated'
 	end
