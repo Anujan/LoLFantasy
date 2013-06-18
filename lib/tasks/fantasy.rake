@@ -12,7 +12,7 @@ namespace :fantasy do
 				s = tp.player.stats.find_by_week(week)
 				total_points = total_points + s.points unless s.nil?
 			end
-			t.save!
+			t.update_column(:points, total_points)
 		end
 		puts 'All Teams Updated'
 	end
