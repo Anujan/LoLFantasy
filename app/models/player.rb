@@ -7,15 +7,32 @@ class Player < ActiveRecord::Base
 	end
 
 	def total_points
-		points = 0
+		t = 0
+		stats.each do |stat|
+			t = t + stat.points
+		end
 	end
 
 	def kda
-		ratio = 0
+		kills = 0
+		deaths = 0
+		assists = 0
+		stats.each do |stat|
+			kills += stat.kills
+			deaths += stat.deaths
+			assists += stat.assists
+		end
+		return (kills + deaths) / assist.to_f
 	end
 
 	def csmin
-		0
+		cs = 0
+		mins = 0
+		stats.each do |stat|
+			cs += stat.cs
+			mins += stat.game_mins
+		end
+		return cs/min
 	end
 
 	def sell_price
