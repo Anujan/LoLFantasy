@@ -3,7 +3,7 @@ class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :edit, :update, :destroy, :buy, :sell, :manage]
   before_action :check_user_priviledges, only: [:edit, :destroy, :update, :buy, :sell, :manage]
   before_action :roster_change, only: [:buy, :sell]
-  LOCKED_ROSTERS = false
+  LOCKED_ROSTERS = true
   # GET /teams
   # GET /teams.json
   def index
