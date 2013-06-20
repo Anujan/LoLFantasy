@@ -3,7 +3,7 @@ class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :edit, :update, :destroy, :buy, :sell, :manage]
   before_action :check_user_priviledges, only: [:edit, :destroy, :update, :buy, :sell, :manage]
   before_action :roster_change, only: [:buy, :sell]
-  LOCKED_ROSTERS = true
+  LOCKED_ROSTERS = false
   # GET /teams
   # GET /teams.json
   def index
@@ -131,7 +131,7 @@ class TeamsController < ApplicationController
 
     def roster_change
       if (LOCKED_ROSTERS)
-        flash[:error] = 'Rosters are currently locked until sunday night. (LCS Week 1 ends)'
+        flash[:error] = 'Rosters are currently locked until sunday night. (LCS Week 2 ends)'
         redirect_to manage_team_path(@team)
       end
     end
