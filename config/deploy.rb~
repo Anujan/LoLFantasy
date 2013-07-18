@@ -8,7 +8,7 @@ load "config/recipes/nodejs"
 load "config/recipes/rbenv"
 load "config/recipes/check"
 
-server "", :web, :app, :db, primary: true
+server "198.46.140.247", :web, :app, :db, primary: true
 
 set :user, "anujan"
 set :application, "lolfantasy"
@@ -17,7 +17,7 @@ set :deploy_via, :remote_cache
 set :use_sudo, false
 
 set :scm, "git"
-set :repository, "https://github.com/Anujan/LoLFantasy"
+set :repository, "https://anujan@bitbucket.org/anujan/lolfantasy.git"
 set :branch, "master"
 
 default_run_options[:pty] = true
